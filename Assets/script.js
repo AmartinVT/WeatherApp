@@ -5,6 +5,12 @@ var APIKey = "4078811ac12257abe5c1a8aa51a3bfd6"; //API Key to access OpenWeather
 
 let i = 0; //Variable initialization for search save indexing
 
+let a_date = moment().format("MMM Do");
+let b_data = moment().add(1, 'days').format("MMM Do");
+let c_data = moment().add(2, 'days').format("MMM Do");
+let d_data = moment().add(3, 'days').format("MMM Do");
+let e_data = moment().add(4, 'days').format("MMM Do");
+
 // Search button controls
 searchBtnEl.on('click', function() { //On press of save button, saves input to local storage 
     let city = textSearchEl.value; //Saves the value of the text entry as a variable
@@ -17,13 +23,16 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
         return response.json()
     })
     .then(function(data){ //Printing of the API call to the console
-        console.log(data)
+        let apiResponse = JSON.stringify(data);
+        
+        a_feelsLike = data.main.feels_like;
+        a_weatherIcon = data.weather[0].icon;
+        a_humidity = data.main.humidity;
+        console.log(data);
+        console.log(a_date);
+        console.log(a_feelsLike);
+        console.log(a_weatherIcon);
+        console.log(a_humidity);
     })
     i++; //Index of i for storing unique searches
 });
-
-//let city = textSearchEl.value;
-
-//var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
-
-//let apiResponse = jQuery.get(queryURL);
