@@ -1,6 +1,13 @@
 let searchBtnEl = $('#searchBtn'); //Declares the save button from HTML as a variable to be used in JavaScript
 let textSearchEl = document.getElementById('userText'); //Saves the text input into the HTML form as a variable to be used in JavaScript
 
+// Javascript elements for search history buttons
+let searchHist0El = $('#hist0Btn');
+let searchHist1El = $('#hist1Btn');
+let searchHist2El = $('#hist2Btn');
+let searchHist3El = $('#hist3Btn');
+let searchHist4El = $('#hist4Btn');
+
 var APIKey = "4078811ac12257abe5c1a8aa51a3bfd6"; //API Key to access OpenWeatherAPI
 
 let i = 0; //Variable initialization for search save indexing
@@ -31,6 +38,37 @@ document.getElementById("hist1Btn").innerHTML = searchHist1;
 document.getElementById("hist2Btn").innerHTML = searchHist2;
 document.getElementById("hist3Btn").innerHTML = searchHist3;
 document.getElementById("hist4Btn").innerHTML = searchHist4;
+
+// Buttons to set seachbar text based on user clicking the "button" for the search history text
+searchHist0El.click (function(){
+    console.log("Search history 0 button pressed")
+    textSearchEl.value = searchHist0;
+    searchBtnEl.click();
+});
+
+searchHist1El.click (function(){
+    console.log("Search history 1 button pressed")
+    textSearchEl.value = searchHist1;
+    searchBtnEl.click();
+});
+
+searchHist2El.click (function(){
+    console.log("Search history 2 button pressed")
+    textSearchEl.value = searchHist2;
+    searchBtnEl.click();
+});
+
+searchHist3El.click (function(){
+    console.log("Search history 3 button pressed")
+    textSearchEl.value = searchHist3;
+    searchBtnEl.click();
+});
+
+searchHist4El.click (function(){
+    console.log("Search history 4 button pressed")
+    textSearchEl.value = searchHist4;
+    searchBtnEl.click();
+});
 
 // Search button controls
 searchBtnEl.on('click', function() { //On press of save button, saves input to local storage 
