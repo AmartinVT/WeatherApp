@@ -18,15 +18,40 @@ let e_date_unix = moment().add(4, 'days').unix(); //Today + 4 (Unix)
 let f_date = moment().add(5, 'days').format("MMM Do"); //Today + 5
 let f_date_unix = moment().add(5, 'days').unix(); //Today + 5 (Unix)
 
+// Initializes "search history" button variables from local storage
+let searchHist0 = localStorage.getItem('SearchRecord0');
+let searchHist1 = localStorage.getItem('SearchRecord1');
+let searchHist2 = localStorage.getItem('SearchRecord2');
+let searchHist3 = localStorage.getItem('SearchRecord3');
+let searchHist4 = localStorage.getItem('SearchRecord4');
+
+// Passes "search history" varaibles to HTML sheet
+document.getElementById("hist0Btn").innerHTML = searchHist0;
+document.getElementById("hist1Btn").innerHTML = searchHist1;
+document.getElementById("hist2Btn").innerHTML = searchHist2;
+document.getElementById("hist3Btn").innerHTML = searchHist3;
+document.getElementById("hist4Btn").innerHTML = searchHist4;
+
 // Search button controls
 searchBtnEl.on('click', function() { //On press of save button, saves input to local storage 
     let city = textSearchEl.value; //Saves the value of the text entry as a variable
     console.log("Search button pressed"); //Logs the search button was pressed
     localStorage.setItem("SearchRecord"+i,city); //Creates an indexing local storage variable for cities searched
     console.log(`Saved Search :  ${city} `); //Confirms the searched city was saved
+
+    // Updates search history variables in local storage
+    let searchHist0 = localStorage.getItem('SearchRecord0');
+    let searchHist1 = localStorage.getItem('SearchRecord1');
+    let searchHist2 = localStorage.getItem('SearchRecord2');
+    let searchHist3 = localStorage.getItem('SearchRecord3');
+    let searchHist4 = localStorage.getItem('SearchRecord4');
     
-    let searchHist1 = localStorage.getItem('SearchRecord1')
-    console.log(searchHist1)
+    // Writes / re-writes button values based on updated local storage
+    document.getElementById("hist0Btn").innerHTML = searchHist0;
+    document.getElementById("hist1Btn").innerHTML = searchHist1;
+    document.getElementById("hist2Btn").innerHTML = searchHist2;
+    document.getElementById("hist3Btn").innerHTML = searchHist3;
+    document.getElementById("hist4Btn").innerHTML = searchHist4;
 
     //OpenWeatherAPI call for today's date
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + a_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
@@ -148,5 +173,10 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
         })
     })
     
-    i++; //Index of i for storing unique searches
+    if (i < 4) {
+        i++ //Index of i for storing unique searches for i from 0 to 4
+     } 
+    else {
+        i=0 //Resets i to 0 if i >= 5 since 5 is the max # of stored searches
+    };
 });
