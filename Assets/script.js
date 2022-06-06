@@ -22,11 +22,14 @@ let f_date_unix = moment().add(5, 'days').unix(); //Today + 5 (Unix)
 searchBtnEl.on('click', function() { //On press of save button, saves input to local storage 
     let city = textSearchEl.value; //Saves the value of the text entry as a variable
     console.log("Search button pressed"); //Logs the search button was pressed
-    localStorage.setItem("SearchRecord:"+i,city); //Creates an indexing local storage variable for cities searched
+    localStorage.setItem("SearchRecord"+i,city); //Creates an indexing local storage variable for cities searched
     console.log(`Saved Search :  ${city} `); //Confirms the searched city was saved
     
+    let searchHist1 = localStorage.getItem('SearchRecord1')
+    console.log(searchHist1)
+
     //OpenWeatherAPI call for today's date
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial" + "&dt=" + a_date_unix; //Variable for URL for the API with user input city name and API key
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + a_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
     fetch(queryURL) //API call
     .then(function (response){ //Response of the API call
         return response.json()
@@ -45,7 +48,7 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
         console.log(a_humidity);
 
         //OpenWeatherAPI call for today's date + 1
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial" + "&dt=" + b_date_unix; //Variable for URL for the API with user input city name and API key
+        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + b_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
         fetch(queryURL) //API call
         .then(function (response){ //Response of the API call
             return response.json()
@@ -64,7 +67,7 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
             console.log(b_humidity);
         
             //OpenWeatherAPI call for today's date + 2
-            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial" + "&dt=" + c_date_unix; //Variable for URL for the API with user input city name and API key
+            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + c_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
             fetch(queryURL) //API call
             .then(function (response){ //Response of the API call
                 return response.json()
@@ -83,7 +86,7 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
                 console.log(c_humidity);
                 
                 //OpenWeatherAPI call for today's date + 3
-                var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial" + "&dt=" + d_date_unix; //Variable for URL for the API with user input city name and API key
+                var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + d_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
                 fetch(queryURL) //API call
                 .then(function (response){ //Response of the API call
                     return response.json()
@@ -102,7 +105,7 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
                     console.log(d_humidity);
                 
                     //OpenWeatherAPI call for today's date + 4
-                    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial" + "&dt=" + e_date_unix; //Variable for URL for the API with user input city name and API key
+                    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + e_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
                     fetch(queryURL) //API call
                     .then(function (response){ //Response of the API call
                         return response.json()
@@ -121,7 +124,7 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
                         console.log(e_humidity);
                     
                         //OpenWeatherAPI call for today's date + 5
-                        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial" + "&dt=" + f_date_unix; //Variable for URL for the API with user input city name and API key
+                        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + f_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
                         fetch(queryURL) //API call
                         .then(function (response){ //Response of the API call
                             return response.json()
