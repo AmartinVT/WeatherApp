@@ -102,7 +102,6 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
         a_weatherIcon = data.weather[0].icon;
         a_wind = data.wind.speed;
         a_humidity = data.main.humidity;
-        console.log(data);
         document.getElementById("date0date").innerHTML = "TODAY: " + a_date;
         document.getElementById("date0icon").src = `http://openweathermap.org/img/wn/${a_weatherIcon}@2x.png`;
         document.getElementById("date0temp").innerHTML = "Feels Like: " + a_feelsLike + " F";
@@ -120,13 +119,11 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
             b_weatherIcon = data.weather[0].icon;
             b_wind = data.wind.speed;
             b_humidity = data.main.humidity;
-            console.log(data);
-            console.log(b_date);
-            console.log(b_date_unix); 
-            console.log(b_feelsLike);
-            console.log(b_weatherIcon);
-            console.log(b_wind);
-            console.log(b_humidity);
+            document.getElementById("date1date").innerHTML = "TOMORROW: " + b_date;
+            document.getElementById("date1icon").src = `http://openweathermap.org/img/wn/${b_weatherIcon}@2x.png`;
+            document.getElementById("date1temp").innerHTML = "Feels Like: " + b_feelsLike + " F";
+            document.getElementById("date1wind").innerHTML = "Wind Speed: " + b_wind + " MPH";
+            document.getElementById("date1humid").innerHTML = "Humidity: " + b_humidity + " %";
         
             //OpenWeatherAPI call for today's date + 2
             var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + c_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
@@ -139,13 +136,11 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
                 c_weatherIcon = data.weather[0].icon;
                 c_wind = data.wind.speed;
                 c_humidity = data.main.humidity;
-                console.log(data);
-                console.log(c_date);
-                console.log(c_date_unix); 
-                console.log(c_feelsLike);
-                console.log(c_weatherIcon);
-                console.log(c_wind);
-                console.log(c_humidity);
+                document.getElementById("date2date").innerHTML = "3-DAY: " + c_date;
+                document.getElementById("date2icon").src = `http://openweathermap.org/img/wn/${c_weatherIcon}@2x.png`;
+                document.getElementById("date2temp").innerHTML = "Feels Like: " + c_feelsLike + " F";
+                document.getElementById("date2wind").innerHTML = "Wind Speed: " + c_wind + " MPH";
+                document.getElementById("date2humid").innerHTML = "Humidity: " + c_humidity + " %";
                 
                 //OpenWeatherAPI call for today's date + 3
                 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + d_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
@@ -158,13 +153,11 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
                     d_weatherIcon = data.weather[0].icon;
                     d_wind = data.wind.speed;
                     d_humidity = data.main.humidity;
-                    console.log(data);
-                    console.log(d_date);
-                    console.log(d_date_unix); 
-                    console.log(d_feelsLike);
-                    console.log(d_weatherIcon);
-                    console.log(d_wind);
-                    console.log(d_humidity);
+                    document.getElementById("date3date").innerHTML = "4-DAY: " + d_date;
+                    document.getElementById("date3icon").src = `http://openweathermap.org/img/wn/${d_weatherIcon}@2x.png`;
+                    document.getElementById("date3temp").innerHTML = "Feels Like: " + d_feelsLike + " F";
+                    document.getElementById("date3wind").innerHTML = "Wind Speed: " + d_wind + " MPH";
+                    document.getElementById("date3humid").innerHTML = "Humidity: " + d_humidity + " %";
                 
                     //OpenWeatherAPI call for today's date + 4
                     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + e_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
@@ -177,13 +170,11 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
                         e_weatherIcon = data.weather[0].icon;
                         e_wind = data.wind.speed;
                         e_humidity = data.main.humidity;
-                        console.log(data);
-                        console.log(e_date);
-                        console.log(e_date_unix); 
-                        console.log(e_feelsLike);
-                        console.log(e_weatherIcon);
-                        console.log(e_wind);
-                        console.log(e_humidity);
+                        document.getElementById("date4date").innerHTML = "5-DAY: " + e_date;
+                        document.getElementById("date4icon").src = `http://openweathermap.org/img/wn/${e_weatherIcon}@2x.png`;
+                        document.getElementById("date4temp").innerHTML = "Feels Like: " + e_feelsLike + " F";
+                        document.getElementById("date4wind").innerHTML = "Wind Speed: " + e_wind + " MPH";
+                        document.getElementById("date4humid").innerHTML = "Humidity: " + e_humidity + " %";
                     
                         //OpenWeatherAPI call for today's date + 5
                         var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + f_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
@@ -196,13 +187,11 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
                             f_weatherIcon = data.weather[0].icon;
                             f_wind = data.wind.speed;
                             f_humidity = data.main.humidity;
-                            console.log(data);
-                            console.log(f_date);
-                            console.log(a_date_unix);                             
-                            console.log(f_feelsLike);
-                            console.log(f_weatherIcon);
-                            console.log(f_wind);
-                            console.log(f_humidity);
+                            document.getElementById("date5date").innerHTML = "6-DAY: " + f_date;
+                            document.getElementById("date5icon").src = `http://openweathermap.org/img/wn/${f_weatherIcon}@2x.png`;
+                            document.getElementById("date5temp").innerHTML = "Feels Like: " + f_feelsLike + " F";
+                            document.getElementById("date5wind").innerHTML = "Wind Speed: " + f_wind + " MPH";
+                            document.getElementById("date5humid").innerHTML = "Humidity: " + f_humidity + " %";
                         })    
                     })
                 })
