@@ -8,13 +8,6 @@ let searchHist2El = $('#hist2Btn');
 let searchHist3El = $('#hist3Btn');
 let searchHist4El = $('#hist4Btn');
 
-// Javascript elements for all weather variables (date, icon, temp, wind, humidity) for TODAY
-let d0dateEl = document.getElementById('date0date');
-let d0iconEl = document.getElementById('date0icon');
-let d0tempEl = document.getElementById('date0temp');
-let d0windEl = document.getElementById('date0wind');
-let d0humidEl = document.getElementById('date0humid');
-
 var APIKey = "4078811ac12257abe5c1a8aa51a3bfd6"; //API Key to access OpenWeatherAPI
 
 let i = 0; //Variable initialization for search save indexing
@@ -111,7 +104,7 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
         a_humidity = data.main.humidity;
         console.log(data);
         document.getElementById("date0date").innerHTML = "TODAY: " + a_date;
-        document.getElementById("date0icon").innerHTML = a_weatherIcon;
+        document.getElementById("date0icon").src = `http://openweathermap.org/img/wn/${a_weatherIcon}@2x.png`;
         document.getElementById("date0temp").innerHTML = "Feels Like: " + a_feelsLike + " F";
         document.getElementById("date0wind").innerHTML = "Wind Speed: " + a_wind + " MPH";
         document.getElementById("date0humid").innerHTML = "Humidity: " + a_humidity + " %";
