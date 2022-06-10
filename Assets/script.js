@@ -13,17 +13,11 @@ var APIKey = "4078811ac12257abe5c1a8aa51a3bfd6"; //API Key to access OpenWeather
 let i = 0; //Variable initialization for search save indexing
 
 let a_date = moment().format("MMM Do"); //Today
-let a_date_unix = moment().unix(); //Today (Unix)
 let b_date = moment().add(1, 'days').format("MMM Do"); //Today + 1
-let b_date_unix = moment().add(1, 'days').unix(); //Today + 1 (Unix)
 let c_date = moment().add(2, 'days').format("MMM Do"); //Today + 2
-let c_date_unix = moment().add(2, 'days').unix(); //Today + 2 (Unix)
 let d_date = moment().add(3, 'days').format("MMM Do"); //Today + 3
-let d_date_unix = moment().add(3, 'days').unix(); //Today + 3 (Unix)
 let e_date = moment().add(4, 'days').format("MMM Do"); //Today + 4
-let e_date_unix = moment().add(4, 'days').unix(); //Today + 4 (Unix)
 let f_date = moment().add(5, 'days').format("MMM Do"); //Today + 5
-let f_date_unix = moment().add(5, 'days').unix(); //Today + 5 (Unix)
 
 // Initializes "search history" button variables from local storage
 let searchHist0 = localStorage.getItem('SearchRecord0');
@@ -91,118 +85,47 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
     document.getElementById("hist3Btn").innerHTML = searchHist3;
     document.getElementById("hist4Btn").innerHTML = searchHist4;
 
+    //OpenWeatherAPI call to get longitude and latitude
+    var queryUrlLonLat = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey; //Variable for URL for the API with user input city name and API key
+    fetch(queryUrlLonLat)
+    .then(function (response){
+        return response.json()
+    })
+    .then(function(data){
+        let longitude = data.coord.lon;
+        let latitude = data.coord.lat;
+        localStorage.setItem("lon", longitude)
+        localStorage.setItem("lat", latitude)
+    })
+    
+    let lat = localStorage.getItem("lat");
+    let lon = localStorage.getItem("lon");
+
     //OpenWeatherAPI call for today's date
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + a_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
+    var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts" + "&units=imperial" + "&appid=" + APIKey; //Variable for URL for the API with user input city name and API key
     fetch(queryURL) //API call
     .then(function (response){ //Response of the API call
         return response.json()
     })
     .then(function(data){ //Printing of the API call to the console
-        a_feelsLike = data.main.feels_like;
-        a_weatherIcon = data.weather[0].icon;
-        a_wind = data.wind.speed;
-        a_humidity = data.main.humidity;
+        console.log(data)
+        a_feelsLike = data.daily[0].feels_like.day;
+        a_weatherIcon = data.daily[0].weather[0].icon;
+        a_wind = data.daily[0].wind_speed;
+        a_humidity = data.daily[0].humidity;
+        a_uv = data.daily[0].uvi;
         document.getElementById("date0date").innerHTML = "TODAY: " + a_date;
         document.getElementById("date0icon").src = `http://openweathermap.org/img/wn/${a_weatherIcon}@2x.png`;
         document.getElementById("date0temp").innerHTML = "Feels Like: " + a_feelsLike + " F";
         document.getElementById("date0wind").innerHTML = "Wind Speed: " + a_wind + " MPH";
         document.getElementById("date0humid").innerHTML = "Humidity: " + a_humidity + " %";
-
-        //OpenWeatherAPI call for today's date + 1
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + b_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
-        fetch(queryURL) //API call
-        .then(function (response){ //Response of the API call
-            return response.json()
-        })
-        .then(function(data){ //Printing of the API call to the console
-            b_feelsLike = data.main.feels_like;
-            b_weatherIcon = data.weather[0].icon;
-            b_wind = data.wind.speed;
-            b_humidity = data.main.humidity;
-            document.getElementById("date1date").innerHTML = "TOMORROW: " + b_date;
-            document.getElementById("date1icon").src = `http://openweathermap.org/img/wn/${b_weatherIcon}@2x.png`;
-            document.getElementById("date1temp").innerHTML = "Feels Like: " + b_feelsLike + " F";
-            document.getElementById("date1wind").innerHTML = "Wind Speed: " + b_wind + " MPH";
-            document.getElementById("date1humid").innerHTML = "Humidity: " + b_humidity + " %";
-        
-            //OpenWeatherAPI call for today's date + 2
-            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + c_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
-            fetch(queryURL) //API call
-            .then(function (response){ //Response of the API call
-                return response.json()
-            })
-            .then(function(data){ //Printing of the API call to the console
-                c_feelsLike = data.main.feels_like;
-                c_weatherIcon = data.weather[0].icon;
-                c_wind = data.wind.speed;
-                c_humidity = data.main.humidity;
-                document.getElementById("date2date").innerHTML = "3-DAY: " + c_date;
-                document.getElementById("date2icon").src = `http://openweathermap.org/img/wn/${c_weatherIcon}@2x.png`;
-                document.getElementById("date2temp").innerHTML = "Feels Like: " + c_feelsLike + " F";
-                document.getElementById("date2wind").innerHTML = "Wind Speed: " + c_wind + " MPH";
-                document.getElementById("date2humid").innerHTML = "Humidity: " + c_humidity + " %";
-                
-                //OpenWeatherAPI call for today's date + 3
-                var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + d_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
-                fetch(queryURL) //API call
-                .then(function (response){ //Response of the API call
-                    return response.json()
-                })
-                .then(function(data){ //Printing of the API call to the console
-                    d_feelsLike = data.main.feels_like;
-                    d_weatherIcon = data.weather[0].icon;
-                    d_wind = data.wind.speed;
-                    d_humidity = data.main.humidity;
-                    document.getElementById("date3date").innerHTML = "4-DAY: " + d_date;
-                    document.getElementById("date3icon").src = `http://openweathermap.org/img/wn/${d_weatherIcon}@2x.png`;
-                    document.getElementById("date3temp").innerHTML = "Feels Like: " + d_feelsLike + " F";
-                    document.getElementById("date3wind").innerHTML = "Wind Speed: " + d_wind + " MPH";
-                    document.getElementById("date3humid").innerHTML = "Humidity: " + d_humidity + " %";
-                
-                    //OpenWeatherAPI call for today's date + 4
-                    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + e_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
-                    fetch(queryURL) //API call
-                    .then(function (response){ //Response of the API call
-                        return response.json()
-                    })
-                    .then(function(data){ //Printing of the API call to the console
-                        e_feelsLike = data.main.feels_like;
-                        e_weatherIcon = data.weather[0].icon;
-                        e_wind = data.wind.speed;
-                        e_humidity = data.main.humidity;
-                        document.getElementById("date4date").innerHTML = "5-DAY: " + e_date;
-                        document.getElementById("date4icon").src = `http://openweathermap.org/img/wn/${e_weatherIcon}@2x.png`;
-                        document.getElementById("date4temp").innerHTML = "Feels Like: " + e_feelsLike + " F";
-                        document.getElementById("date4wind").innerHTML = "Wind Speed: " + e_wind + " MPH";
-                        document.getElementById("date4humid").innerHTML = "Humidity: " + e_humidity + " %";
-                    
-                        //OpenWeatherAPI call for today's date + 5
-                        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&dt=" + f_date_unix + "&appid=" + APIKey + "&units=imperial"; //Variable for URL for the API with user input city name and API key
-                        fetch(queryURL) //API call
-                        .then(function (response){ //Response of the API call
-                            return response.json()
-                        })
-                        .then(function(data){ //Printing of the API call to the console
-                            f_feelsLike = data.main.feels_like;
-                            f_weatherIcon = data.weather[0].icon;
-                            f_wind = data.wind.speed;
-                            f_humidity = data.main.humidity;
-                            document.getElementById("date5date").innerHTML = "6-DAY: " + f_date;
-                            document.getElementById("date5icon").src = `http://openweathermap.org/img/wn/${f_weatherIcon}@2x.png`;
-                            document.getElementById("date5temp").innerHTML = "Feels Like: " + f_feelsLike + " F";
-                            document.getElementById("date5wind").innerHTML = "Wind Speed: " + f_wind + " MPH";
-                            document.getElementById("date5humid").innerHTML = "Humidity: " + f_humidity + " %";
-                        })    
-                    })
-                })
-            })
-        })
     })
-    
+
     if (i < 4) {
         i++ //Index of i for storing unique searches for i from 0 to 4
      } 
     else {
         i=0 //Resets i to 0 if i >= 5 since 5 is the max # of stored searches
     };
+
 });
