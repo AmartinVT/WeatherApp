@@ -4,7 +4,7 @@ Developer Name: Adam Martin
 
 Title: WeatherApp
 
-Due Date: 6/05/2022
+Due Date: 6/12/2022
 
 LINKS
 ---
@@ -22,5 +22,12 @@ The most recent searched city will display the weather data for the next 5 days.
 
 This data will come from the "OpenWeatherAPI".
 
+Moment.JS is used for time controls.
+
 SCREENSHOTS
 ---
+![Screenshot 1](Assets/SS1.png "No Search")
+
+![Screenshot 2](Assets/SS2.png "Atlanta")
+
+![Screenshot 3](Assets/SS3.png "Boston")

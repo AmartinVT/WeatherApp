@@ -157,6 +157,7 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
         document.getElementById("date0temp").innerHTML = "Feels Like: " + a_feelsLike + " F";
         document.getElementById("date0wind").innerHTML = "Wind Speed: " + a_wind + " MPH";
         document.getElementById("date0humid").innerHTML = "Humidity: " + a_humidity + " %";
+        document.getElementById("date0uv").innerHTML = "UV Index: " + a_uv;
 
         //Day + 1 HTML Update
         document.getElementById("date1date").innerHTML = "TOMORROW: " + b_date;
