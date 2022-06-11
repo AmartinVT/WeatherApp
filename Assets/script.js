@@ -8,7 +8,7 @@ let searchHist2El = $('#hist2Btn');
 let searchHist3El = $('#hist3Btn');
 let searchHist4El = $('#hist4Btn');
 
-var APIKey = "4078811ac12257abe5c1a8aa51a3bfd6"; //API Key to access OpenWeatherAPI
+let APIKey = "4078811ac12257abe5c1a8aa51a3bfd6"; //API Key to access OpenWeatherAPI
 
 let i = 0; //Variable initialization for search save indexing
 
@@ -88,24 +88,19 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
     //OpenWeatherAPI call to get longitude and latitude
     var queryUrlLonLat = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey; //Variable for URL for the API with user input city name and API key
     fetch(queryUrlLonLat)
-    .then(function (response){
-        return response.json()
-    })
-    .then(function(data){
-        let longitude = data.coord.lon;
-        let latitude = data.coord.lat;
-        localStorage.setItem("lon", longitude)
-        localStorage.setItem("lat", latitude)
-    })
-    
-    let lat = localStorage.getItem("lat");
-    let lon = localStorage.getItem("lon");
+    .then(response => {
+        let data = response.json()
+    });
 
+    debugger;
+    lon = localStorage.getItem('lon');
+    lat = localStorage.getItem('lat');
+    debugger;
     //OpenWeatherAPI call for today's date
     var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts" + "&units=imperial" + "&appid=" + APIKey; //Variable for URL for the API with user input city name and API key
     fetch(queryURL) //API call
     .then(function (response){ //Response of the API call
-        return response.json()
+        response.json()
     })
     .then(function(data){ //Printing of the API call to the console
         console.log(data)
@@ -201,3 +196,5 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
     };
 
 });
+
+
