@@ -98,8 +98,9 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
     localStorage.setItem('lon',lon)
     }
     
-    request();
- 
+    request(); // Invoke API for getting latitude and longitude
+    
+    // Pull latitude and longitude from local storage
     const lat = localStorage.getItem("lat");
     const lon = localStorage.getItem("lon");
 
@@ -193,7 +194,7 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
         document.getElementById("date5humid").innerHTML = "Humidity: " + f_humidity + " %";           
     }
     
-    request2();
+    request2(); //Invoke API for getting daily weather
     
 })
 
