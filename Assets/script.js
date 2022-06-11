@@ -86,24 +86,30 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
     document.getElementById("hist4Btn").innerHTML = searchHist4;
 
     //OpenWeatherAPI call to get longitude and latitude
-    var queryUrlLonLat = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey; //Variable for URL for the API with user input city name and API key
-    fetch(queryUrlLonLat)
-    .then(response => {
-        let data = response.json()
-    });
+    const queryUrlLonLat = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + APIKey; //Variable for URL for the API with user input city name and API key
+    
+    const request = async () => {
+    const response = await fetch(queryUrlLonLat);
+    const json = await response.json();
+    console.log(json);
+    const lat = json.coord.lat;
+    const lon = json.coord.lon;
+    localStorage.setItem('lat',lat)
+    localStorage.setItem('lon',lon)
+    }
+    
+    request();
+ 
+    const lat = localStorage.getItem("lat");
+    const lon = localStorage.getItem("lon");
 
-    debugger;
-    lon = localStorage.getItem('lon');
-    lat = localStorage.getItem('lat');
-    debugger;
     //OpenWeatherAPI call for today's date
-    var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts" + "&units=imperial" + "&appid=" + APIKey; //Variable for URL for the API with user input city name and API key
-    fetch(queryURL) //API call
-    .then(function (response){ //Response of the API call
-        response.json()
-    })
-    .then(function(data){ //Printing of the API call to the console
-        console.log(data)
+    const queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts" + "&units=imperial" + "&appid=" + APIKey; //Variable for URL for the API with user input city name and API key
+    
+    const request2 = async () => {
+        const response = await fetch(queryURL); //API call
+        const data = await response.json();
+        console.log(data);
         
         //Day + 0 Data
         a_feelsLike = data.daily[0].feels_like.day;
@@ -185,16 +191,16 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
         document.getElementById("date5temp").innerHTML = "Feels Like: " + f_feelsLike + " F";
         document.getElementById("date5wind").innerHTML = "Wind Speed: " + f_wind + " MPH";
         document.getElementById("date5humid").innerHTML = "Humidity: " + f_humidity + " %";           
-  
-    })
+    }
+    
+    request2();
+    
+})
 
-    if (i < 4) {
-        i++ //Index of i for storing unique searches for i from 0 to 4
-     } 
-    else {
-        i=0 //Resets i to 0 if i >= 5 since 5 is the max # of stored searches
-    };
-
-});
-
+if (i < 4) {
+    i++ //Index of i for storing unique searches for i from 0 to 4
+    } 
+else {
+    i=0 //Resets i to 0 if i >= 5 since 5 is the max # of stored searches
+};
 
