@@ -86,7 +86,7 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
     document.getElementById("hist4Btn").innerHTML = searchHist4;
 
     //OpenWeatherAPI call to get longitude and latitude
-    const queryUrlLonLat = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + APIKey; //Variable for URL for the API with user input city name and API key
+    const queryUrlLonLat = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + APIKey; //Variable for URL for the API with user input city name and API key
     
     const request = async () => {
     const response = await fetch(queryUrlLonLat);
