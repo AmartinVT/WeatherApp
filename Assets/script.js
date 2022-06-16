@@ -153,7 +153,7 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
 
         //Day + 0 HTML Update
         document.getElementById("date0date").innerHTML = "TODAY: " + a_date;
-        document.getElementById("date0icon").src = `http://openweathermap.org/img/wn/${a_weatherIcon}@2x.png`;
+        document.getElementById("date0icon").src = `https://openweathermap.org/img/wn/${a_weatherIcon}@2x.png`;
         document.getElementById("date0temp").innerHTML = "Feels Like: " + a_feelsLike + " F";
         document.getElementById("date0wind").innerHTML = "Wind Speed: " + a_wind + " MPH";
         document.getElementById("date0humid").innerHTML = "Humidity: " + a_humidity + " %";
@@ -161,35 +161,35 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
 
         //Day + 1 HTML Update
         document.getElementById("date1date").innerHTML = "TOMORROW: " + b_date;
-        document.getElementById("date1icon").src = `http://openweathermap.org/img/wn/${b_weatherIcon}@2x.png`;
+        document.getElementById("date1icon").src = `https://openweathermap.org/img/wn/${b_weatherIcon}@2x.png`;
         document.getElementById("date1temp").innerHTML = "Feels Like: " + b_feelsLike + " F";
         document.getElementById("date1wind").innerHTML = "Wind Speed: " + b_wind + " MPH";
         document.getElementById("date1humid").innerHTML = "Humidity: " + b_humidity + " %";
 
         //Day + 2 HTML Update
         document.getElementById("date2date").innerHTML = c_date;
-        document.getElementById("date2icon").src = `http://openweathermap.org/img/wn/${c_weatherIcon}@2x.png`;
+        document.getElementById("date2icon").src = `https://openweathermap.org/img/wn/${c_weatherIcon}@2x.png`;
         document.getElementById("date2temp").innerHTML = "Feels Like: " + c_feelsLike + " F";
         document.getElementById("date2wind").innerHTML = "Wind Speed: " + c_wind + " MPH";
         document.getElementById("date2humid").innerHTML = "Humidity: " + c_humidity + " %";         
 
         //Day + 3 HTML Update
         document.getElementById("date3date").innerHTML = d_date;
-        document.getElementById("date3icon").src = `http://openweathermap.org/img/wn/${d_weatherIcon}@2x.png`;
+        document.getElementById("date3icon").src = `https://openweathermap.org/img/wn/${d_weatherIcon}@2x.png`;
         document.getElementById("date3temp").innerHTML = "Feels Like: " + d_feelsLike + " F";
         document.getElementById("date3wind").innerHTML = "Wind Speed: " + d_wind + " MPH";
         document.getElementById("date3humid").innerHTML = "Humidity: " + d_humidity + " %";
 
         //Day + 4 HTML Update
         document.getElementById("date4date").innerHTML = e_date;
-        document.getElementById("date4icon").src = `http://openweathermap.org/img/wn/${e_weatherIcon}@2x.png`;
+        document.getElementById("date4icon").src = `https://openweathermap.org/img/wn/${e_weatherIcon}@2x.png`;
         document.getElementById("date4temp").innerHTML = "Feels Like: " + e_feelsLike + " F";
         document.getElementById("date4wind").innerHTML = "Wind Speed: " + e_wind + " MPH";
         document.getElementById("date4humid").innerHTML = "Humidity: " + e_humidity + " %";
 
         //Day + 5 HTML Update
         document.getElementById("date5date").innerHTML = f_date;
-        document.getElementById("date5icon").src = `http://openweathermap.org/img/wn/${f_weatherIcon}@2x.png`;
+        document.getElementById("date5icon").src = `https://openweathermap.org/img/wn/${f_weatherIcon}@2x.png`;
         document.getElementById("date5temp").innerHTML = "Feels Like: " + f_feelsLike + " F";
         document.getElementById("date5wind").innerHTML = "Wind Speed: " + f_wind + " MPH";
         document.getElementById("date5humid").innerHTML = "Humidity: " + f_humidity + " %";           
