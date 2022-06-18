@@ -33,39 +33,42 @@ document.getElementById("hist2Btn").innerHTML = searchHist2;
 document.getElementById("hist3Btn").innerHTML = searchHist3;
 document.getElementById("hist4Btn").innerHTML = searchHist4;
 
-// Buttons to set seachbar text based on user clicking the "button" for the search history text
-searchHist0El.click (function(){
-    console.log("Search history 0 button pressed")
-    textSearchEl.value = searchHist0;
-    searchBtnEl.click();
-});
 
-searchHist1El.click (function(){
-    console.log("Search history 1 button pressed")
-    textSearchEl.value = searchHist1;
-    searchBtnEl.click();
-});
-
-searchHist2El.click (function(){
-    console.log("Search history 2 button pressed")
-    textSearchEl.value = searchHist2;
-    searchBtnEl.click();
-});
-
-searchHist3El.click (function(){
-    console.log("Search history 3 button pressed")
-    textSearchEl.value = searchHist3;
-    searchBtnEl.click();
-});
-
-searchHist4El.click (function(){
-    console.log("Search history 4 button pressed")
-    textSearchEl.value = searchHist4;
-    searchBtnEl.click();
-});
 
 // Search button controls
 searchBtnEl.on('click', function() { //On press of save button, saves input to local storage 
+    
+    // Buttons to set seachbar text based on user clicking the "button" for the search history text
+    searchHist0El.click (function(){
+        console.log("Search history 0 button pressed")
+        textSearchEl.value = searchHist0;
+        searchBtnEl.click();
+    });
+
+    searchHist1El.click (function(){
+        console.log("Search history 1 button pressed")
+        textSearchEl.value = searchHist1;
+        searchBtnEl.click();
+    });
+
+    searchHist2El.click (function(){
+        console.log("Search history 2 button pressed")
+        textSearchEl.value = searchHist2;
+        searchBtnEl.click();
+    });
+
+    searchHist3El.click (function(){
+        console.log("Search history 3 button pressed")
+        textSearchEl.value = searchHist3;
+        searchBtnEl.click();
+    });
+
+    searchHist4El.click (function(){
+        console.log("Search history 4 button pressed")
+        textSearchEl.value = searchHist4;
+        searchBtnEl.click();
+    });
+    
     let city = textSearchEl.value; //Saves the value of the text entry as a variable
     console.log("Search button pressed"); //Logs the search button was pressed
     localStorage.setItem("SearchRecord"+i,city); //Creates an indexing local storage variable for cities searched
@@ -89,25 +92,23 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
     const queryUrlLonLat = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + APIKey; //Variable for URL for the API with user input city name and API key
     
     const request = async () => {
-    const response = await fetch(queryUrlLonLat);
-    const json = await response.json();
-    console.log(json);
-    const lat = json.coord.lat;
-    const lon = json.coord.lon;
-    localStorage.setItem('lat',lat)
-    localStorage.setItem('lon',lon)
+        let response = await fetch(queryUrlLonLat);
+        let json = await response.json();
+        console.log(json);
+        let lat = json.coord.lat;
+        let lon = json.coord.lon;
+        localStorage.setItem('lat',lat)
+        localStorage.setItem('lon',lon)
     }
-    
-    request(); // Invoke API for getting latitude and longitude
-    
-    // Pull latitude and longitude from local storage
-    const lat = localStorage.getItem("lat");
-    const lon = localStorage.getItem("lon");
-
-    //OpenWeatherAPI call for today's date
-    const queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts" + "&units=imperial" + "&appid=" + APIKey; //Variable for URL for the API with user input city name and API key
-    
+   
     const request2 = async () => {
+        // Pull latitude and longitude from local storage
+        let lat = localStorage.getItem("lat");
+        let lon = localStorage.getItem("lon");
+
+        //OpenWeatherAPI call for today's date
+        let queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts" + "&units=imperial" + "&appid=" + APIKey; //Variable for URL for the API with user input city name and API key
+
         const response = await fetch(queryURL); //API call
         const data = await response.json();
         console.log(data);
@@ -195,14 +196,21 @@ searchBtnEl.on('click', function() { //On press of save button, saves input to l
         document.getElementById("date5humid").innerHTML = "Humidity: " + f_humidity + " %";           
     }
     
+    //Function calls
+    request(); // Invoke API for getting latitude and longitude
     request2(); //Invoke API for getting daily weather
+    loop(); //Invoke looping function to index the i variable
     
 })
 
-if (i < 4) {
-    i++ //Index of i for storing unique searches for i from 0 to 4
-    } 
-else {
-    i=0 //Resets i to 0 if i >= 5 since 5 is the max # of stored searches
+// Indexes i variable
+const loop = async () => {
+    if (i < 4) {
+        i++ //Index of i for storing unique searches for i from 0 to 4
+        } 
+    else {
+        i=0 //Resets i to 0 if i >= 5 since 5 is the max # of stored searches
+    }
+    
 };
 
